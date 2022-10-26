@@ -8,13 +8,12 @@ python_requirements(name = "reqs")
 
 python_distribution(
     name = "test_distribution",
-    dependencies = ["//helloworld/main.py:lib"],
-    entry_points = {"console_scripts": {"hello": "helloworld.main:say_hello"}},
+    dependencies = ["//helloworld/greet/greeting.py:lib"],
+    entry_points = {"console_scripts": {"hello": "helloworld.greet.greating:say_hello"}},
     provides = python_artifact(
         name = "test_dist",
         version = "0",
     ),
-    sdist = False,
 )
 
 pex_binary(
