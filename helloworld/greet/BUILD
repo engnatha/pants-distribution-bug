@@ -6,17 +6,18 @@
 # * Pants cannot yet infer dependencies on `resource` / `resources` targets, so we explicitly add
 #   the dep.
 python_sources(
-    name="lib",
-    dependencies=[":translations"],
+    name = "lib",
+    dependencies = [":translations"],
+    overrides = {"greeting.py": {"dependencies": ["//helloworld/external/data:secret_data"]}},
 )
 
 # This target sets the metadata for all the Python test files in this directory.
 python_tests(
-    name="tests",
+    name = "tests",
 )
 
 # This target teaches Pants about our JSON file, which allows other targets to depend on it.
 resource(
-    name="translations",
-    source="translations.json",
+    name = "translations",
+    source = "translations.json",
 )
